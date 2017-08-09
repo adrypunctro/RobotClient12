@@ -26,7 +26,7 @@ public class Visual
         
     }
 
-    public boolean registerClient(Client client)
+    public boolean registerClient()
     {
         ChannelManager manager = ChannelManager.getInstance();
         

@@ -12,6 +12,8 @@ public abstract class Client
 {
     private final ApplicationId appId;
     
+    public abstract void handleRequest();
+    
     protected Client(ApplicationId appId)
     {
         this.appId = appId;
@@ -21,5 +23,22 @@ public abstract class Client
     {
         return appId;
     }
-    public abstract void handleRequest();
+    
+    @Override
+    public boolean equals(Object object)
+    {
+        boolean isEqual= false;
+
+        if (object != null && object instanceof Client)
+        {
+            isEqual = (this.appId == ((Client) object).appId);
+        }
+
+        return isEqual;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.appId.ordinal();
+    }
 }
