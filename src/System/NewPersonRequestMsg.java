@@ -1,3 +1,5 @@
+package System;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,6 +10,13 @@
  *
  * @author ASimionescu
  */
-public enum ApplicationId {
-    VISUAL
+public class NewPersonRequestMsg
+    extends ATPMsg
+{
+    
+    public NewPersonRequestMsg()
+    {
+        super(MessageType.memoryNewPersonRequest);
+    }
+    
 }

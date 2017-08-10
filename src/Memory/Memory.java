@@ -1,3 +1,9 @@
+package Memory;
+
+import System.ATPMsg;
+import System.ApplicationId;
+import System.ChannelManager;
+import System.Client;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -9,23 +15,21 @@
  *
  * @author ASimionescu
  */
-public class Visual
+public class Memory
     extends Client
 {
-    
-    public Visual()
-    {
-        super(ApplicationId.VISUAL);
+    public Memory() {
+        super(ApplicationId.MEMORY);
     }
-    
 
+    @Override
+    public void handleRequest(ATPMsg msg)
+    {
+        // 1 - triggerNewPerson
+        // 2 - searchPeople
+    }
     
     @Override
-    public void handleRequest()
-    {
-        
-    }
-
     public boolean registerClient()
     {
         ChannelManager manager = ChannelManager.getInstance();
@@ -38,7 +42,8 @@ public class Visual
         return false;
     }
     
-    public boolean unregisterClient(ApplicationId appId)
+    @Override
+    public boolean unregisterClient()
     {
         ChannelManager manager = ChannelManager.getInstance();
         

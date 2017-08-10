@@ -1,3 +1,5 @@
+package System;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,17 +10,6 @@
  *
  * @author ASimionescu
  */
-public class Main
-{
-    
-    public static void main(String[] args)
-    {
-        
-        Visual visual = new Visual();
-        
-        visual.registerClient();
-        
-        
-    }
-    
+public enum ApplicationId {
+    VISUAL, MEMORY
 }

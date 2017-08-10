@@ -1,4 +1,7 @@
+package System;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,20 +17,28 @@ import java.util.Optional;
  */
 public class ChannelManager
 {
-    private List<Client> clients;
+    private final List<Client> clients = new ArrayList<>();
+    private final CommQueue commQueue = new CommQueue();
     
     private static class InstanceHolder {
-        private static final ChannelManager instance = new ChannelManager();
+        private static final ChannelManager INSTANCE = new ChannelManager();
     }
     
     public static ChannelManager getInstance()
     {
-        return InstanceHolder.instance;
+        return InstanceHolder.INSTANCE;
     }
     
     public boolean registerClient(Client client)
     {
         boolean ret = clients.add(client);
+        
+        if (ret) {
+            VA_DEBUG.INFO("[ChannelManager] Client ("+client.getAppId().name()+") registered.", true);
+        }
+        else {
+            VA_DEBUG.ERROR("[ChannelManager] Failed client ("+client.getAppId().name()+") register.", true);
+        }
         
         return ret;
     }
@@ -57,5 +68,12 @@ public class ChannelManager
             .orElse(null);
         
         return cli;
+    }
+    
+    public int send(ATPMsg msg)
+    {
+        commQueue.addObject(new CommObject(msg), msg.getPriority().getValue(), 3000);
+        
+        return 0;
     }
 }
