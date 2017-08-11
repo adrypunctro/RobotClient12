@@ -1,5 +1,7 @@
 package System;
 
+import Memory.Memory;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,13 +17,10 @@ public class Main
     
     public static void main(String[] args)
     {
+        OnOff onoff = OnOff.getInstance();
         
-        Visual visual = new Visual();
-        
-        visual.registerClient();
-        
-        
-        
+        onoff.startProgram();
+
     }
     
 }

@@ -12,6 +12,17 @@ package System;
  */
 public enum MessageType
 {
+    onoffWakeUpRequest,
+    onoffWakeUpResponse,
+    onoffSleepRequest,
+    onoffSleepResponse,
+    onoffShutdownRequest,
+    onoffShutdownResponse,
+    
     memoryNewPersonRequest,
-    memoryNewPersonResponse
+    memoryNewPersonResponse,
+    memorySearchPersonRequest,
+    memorySearchPersonResponse,
+    memoryUpdatePersonRequest,
+    memoryUpdatePersonResponse
 }

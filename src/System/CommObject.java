@@ -18,8 +18,18 @@ public class CommObject
         this.msg = msg;
     }
     
+    public ATPMsg getMsg()
+    {
+        return msg;
+    }
+    
     public void setCommComplete(boolean status, ATPMsg reply)
     {
         
+    }
+    
+    public String printString()
+    {
+        return msg.printString();
     }
 }

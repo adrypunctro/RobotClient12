@@ -12,7 +12,7 @@ package System;
  */
 public abstract class ATPMsg
 {
-    private MessagePriority priority;
+    private MessagePriority priority = MessagePriority.NORMAL;
     private int transactionId;
     private MessageType msgType;
     private ApplicationId sourceAppId;
@@ -56,5 +56,10 @@ public abstract class ATPMsg
     public MessageType getMsgType()
     {
         return msgType;
+    }
+    
+    public String printString()
+    {
+        return sourceAppId.name()+" > "+targetAppId.name()+" ("+msgType.name()+", transId:"+transactionId+", prior:"+priority.name()+priority.getValue()+")";
     }
 }
