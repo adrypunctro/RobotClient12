@@ -1,6 +1,7 @@
 package System;
 
 
+import Messages.ATPMsg;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -65,10 +66,6 @@ public class ChannelManager
     {
         threadWorking.set(true);
         tList.parallelStream().forEach((Thread t) -> t.start());
-        /*for(Thread t : tList)
-        {
-            t.start();
-        }*/
     }
     
     public void stopProcess()
@@ -81,7 +78,7 @@ public class ChannelManager
         boolean ret = clients.add(client);
         
         if (ret) {
-            VA_DEBUG.INFO("[ChannelManager] Client ("+client.getAppId().name()+") registered.", true);
+            VA_DEBUG.INFO("[ChannelManager] Client ("+client.getAppId().name()+") registered.", true, 1);
         }
         else {
             VA_DEBUG.ERROR("[ChannelManager] Failed client ("+client.getAppId().name()+") register.", true);
@@ -93,6 +90,13 @@ public class ChannelManager
     public boolean unregisterClient(Client client)
     {
         boolean ret = clients.removeIf((Client cli) -> cli.getAppId() == client.getAppId());
+        
+        if (ret) {
+            VA_DEBUG.INFO("[ChannelManager] Client ("+client.getAppId().name()+") unregistered.", true, 1);
+        }
+        else {
+            VA_DEBUG.ERROR("[ChannelManager] Failed client ("+client.getAppId().name()+") unregister.", true);
+        }
         
         return ret;
     }
@@ -136,13 +140,16 @@ public class ChannelManager
             CommObject item = commQueue.getHighestPrioObject();
             while(item != null)
             {
-                VA_DEBUG.INFO("[ChannelManager] Process msg "+item.printString(), true);
+                VA_DEBUG.INFO("[ChannelManager] Process msg "+item.printString(), true, 3);
                 
-                try { Thread.sleep(500); } catch (InterruptedException e) {
-                    System.out.println(e);
+                boolean ret = false;
+                Client targetClient = getClient(item.getMsg().getTargetId());
+                if (targetClient != null)
+                {
+                    ret = targetClient.handleRequest(item.getMsg());
                 }
                 
-                item.setCommComplete(true, null);
+                item.setCommComplete(ret, null);
                 
                 // Next msg
                 item = commQueue.getHighestPrioObject();
@@ -156,7 +163,6 @@ public class ChannelManager
     {
         indexLock.lock();
         try {
-            VA_DEBUG.INFO("[ChannelManager] Thread wait tasks...", true);
             condIndex.await();
         }
         catch (InterruptedException ex) {

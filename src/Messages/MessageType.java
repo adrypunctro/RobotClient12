@@ -1,4 +1,4 @@
-package System;
+package Messages;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,10 +19,9 @@ public enum MessageType
     onoffShutdownRequest,
     onoffShutdownResponse,
     
-    memoryNewPersonRequest,
-    memoryNewPersonResponse,
-    memorySearchPersonRequest,
-    memorySearchPersonResponse,
-    memoryUpdatePersonRequest,
-    memoryUpdatePersonResponse
+    personDetectedCommand,
+    personDetectedRequest,
+    personDetectedResponse,
+    
+    touchDetectedCommand
 }

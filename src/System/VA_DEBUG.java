@@ -36,6 +36,11 @@ import java.util.Date;
  */
 public class VA_DEBUG
 {
+    private static final int LEVEL = 3;
+    // 1-default errors, important things
+    // 2-default warnings, all actions
+    // 3-object details
+    
     public static final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     
     /**
@@ -66,6 +71,16 @@ public class VA_DEBUG
     
     public static void INFO(String msg, boolean newline)
     {
+        INFO(msg, newline, 2);
+    }
+    
+    public static void INFO(String msg, boolean newline, int level)
+    {
+        if (LEVEL < level)
+        {
+            return;
+        }
+        
         switch(SOURCE)
         {
             case 1:
@@ -96,6 +111,16 @@ public class VA_DEBUG
      */
     public static void ERROR(String msg, boolean newline)
     {
+        ERROR(msg, newline, 1);
+    }
+    
+    public static void ERROR(String msg, boolean newline, int level)
+    {
+        if (LEVEL < level)
+        {
+            return;
+        }
+        
         switch(SOURCE)
         {
             case 1:
@@ -156,6 +181,16 @@ public class VA_DEBUG
      */
     public static void WARNING(String msg, boolean newline)
     {
+        WARNING(msg, newline, 2);
+    }
+    
+    public static void WARNING(String msg, boolean newline, int level)
+    {
+        if (LEVEL < level)
+        {
+            return;
+        }
+        
         switch(SOURCE)
         {
             case 1:

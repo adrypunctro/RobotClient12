@@ -1,4 +1,8 @@
-package System;
+package Messages;
+
+import System.ApplicationId;
+import System.MessagePriority;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,8 +16,9 @@ package System;
  */
 public abstract class ATPMsg
 {
+    private static final AtomicInteger TRANSACTION_ID_AUTO_INCREMENT = new AtomicInteger(1);
     private MessagePriority priority = MessagePriority.NORMAL;
-    private int transactionId;
+    private int transactionId = 0;
     private MessageType msgType;
     private ApplicationId sourceAppId;
     private ApplicationId targetAppId;
@@ -21,6 +26,16 @@ public abstract class ATPMsg
     protected ATPMsg(MessageType msgType)
     {
         this.msgType = msgType;
+    }
+    
+    public void createTransactionId()
+    {
+        this.transactionId = TRANSACTION_ID_AUTO_INCREMENT.getAndIncrement();
+    }
+    
+    public void setTransactionId(int transId)
+    {
+        transactionId = transId;
     }
     
     public void setPriority(MessagePriority priority)
@@ -36,6 +51,11 @@ public abstract class ATPMsg
     public void setTarget(ApplicationId appId)
     {
         this.targetAppId = appId;
+    }
+    
+    public int getTransactionId()
+    {
+        return transactionId;
     }
     
     public MessagePriority getPriority()

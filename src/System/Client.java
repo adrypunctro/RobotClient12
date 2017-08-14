@@ -1,5 +1,7 @@
 package System;
 
+import Messages.ATPMsg;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +16,7 @@ public abstract class Client
 {
     private final ApplicationId appId;
     
-    public abstract void handleRequest(ATPMsg msg);
+    public abstract boolean handleRequest(ATPMsg msg);
     public abstract boolean registerClient();
     public abstract boolean unregisterClient();
     

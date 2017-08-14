@@ -45,13 +45,13 @@ public class CommQueue
         CommQueueElem elem = new CommQueueElem(item, priority, timeout);
         boolean ret = queue.add(elem);
         if(ret) {
-            VA_DEBUG.INFO("[CommQueue] Add Object:", false);
+            VA_DEBUG.INFO("[CommQueue] Add Object:", false, 3);
         }
         else {
-            VA_DEBUG.INFO("[CommQueue] Failed add object:", false);
+            VA_DEBUG.INFO("[CommQueue] Failed add object:", false, 3);
         }
-        VA_DEBUG.INFO(" from "+item.getMsg().getSourceId().name()+" to "+item.getMsg().getTargetId().name()+" ("+item.getMsg().getMsgType().name()+", "+priority+", "+timeout+")", false);
-        VA_DEBUG.INFO(" SIZE: "+queue.size(), true);
+        VA_DEBUG.INFO(" from "+item.getMsg().getSourceId().name()+" to "+item.getMsg().getTargetId().name()+" ("+item.getMsg().getMsgType().name()+", "+priority+", "+timeout+")", false, 3);
+        VA_DEBUG.INFO(" SIZE: "+queue.size(), true, 3);
         
         return ret;
     }
@@ -95,7 +95,7 @@ public class CommQueue
                     (CommQueueElem elem) -> {
                         if (elem.timeout < now) {
                             elem.item.setCommComplete(false, null);
-                            VA_DEBUG.INFO("[CommQueue] Msg "+elem.item.printString()+" EXPIRED.", true);
+                            VA_DEBUG.INFO("[CommQueue] Msg "+elem.item.printString()+" EXPIRED.", true, 3);
                             return true;
                         }
                         return false;

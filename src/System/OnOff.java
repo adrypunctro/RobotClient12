@@ -5,6 +5,8 @@
  */
 package System;
 
+import Visual.VisualMonitor;
+import Visual.Visual;
 import Memory.Memory;
 
 /**
@@ -22,34 +24,36 @@ public class OnOff
         return InstanceHolder.INSTANCE;
     }
     
-    public void startProgram()
+    public static void startProgram()
     {
-        VA_DEBUG.INFO("[ONOFF] Program starting...", true);
+        VA_DEBUG.INFO("[ONOFF] Program starting ::::::::::::::::::::::::::::::::", true, 1);
+        
+        // Init
+        Visual visual = new Visual();
+        Memory memory = new Memory();
+        Touch touch = new Touch();
+        
+        VisualMonitor visualMonitor = new VisualMonitor();
+        TouchMonitor touchMonitor = new TouchMonitor();
         
         ChannelManager manager = ChannelManager.getInstance();
         
         manager.init();
         manager.startProcess();
-        
-        Visual visual = new Visual();
-        Memory memory = new Memory();
-        
+
         visual.registerClient();
         memory.registerClient();
+        touch.registerClient();
         
-        VA_DEBUG.INFO("[ONOFF] Program is runing.", true);
+        visualMonitor.init();
+        visualMonitor.startMonitoring();
         
-        while(true)
-        {
-            int min = 5;
-            int max = 30;
-            int millisecondPeriod = (int) ((Math.random() * (max+1-min)) + min);
-            try { Thread.sleep(millisecondPeriod); } catch (InterruptedException e) {
-                System.out.println(e);
-            }
-            
-            visual.triggerNewPerson();
-        }
+        touchMonitor.init();
+        touchMonitor.startMonitoring();
+        
+        VA_DEBUG.INFO("[ONOFF] Program is runing :::::::::::::::::::::::::::::::", true, 1);
+        
+
         
     }
     

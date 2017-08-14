@@ -5,6 +5,8 @@
  */
 package System;
 
+import Messages.ATPMsg;
+
 /**
  *
  * @author ASimionescu
