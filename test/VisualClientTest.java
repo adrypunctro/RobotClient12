@@ -7,7 +7,7 @@
 import System.ChannelManager;
 import Visual.Visual;
 import System.Client;
-import System.ApplicationId;
+import System.MyApplicationId;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,14 +46,14 @@ public class VisualClientTest {
         Visual visual = new Visual();
         
         assertTrue("Failed registerClient.", visual.registerClient());
-        assertTrue("Failed isClientRegistered. Expected true.", ChannelManager.getInstance().isClientRegistered(ApplicationId.VISUAL));
+        assertTrue("Failed isClientRegistered. Expected true.", ChannelManager.getInstance().isClientRegistered(MyApplicationId.VISUAL));
         
-        Client client = ChannelManager.getInstance().getClient(ApplicationId.VISUAL);
-        assertEquals("Wrong client AppId.", client.getAppId(), ApplicationId.VISUAL);
+        Client client = ChannelManager.getInstance().getClient(MyApplicationId.VISUAL);
+        assertEquals("Wrong client AppId.", client.getAppId(), MyApplicationId.VISUAL);
         assertTrue("Wrong client instance type.", client instanceof Visual);
         
         assertTrue("Failed unregisterClient.", visual.unregisterClient());
-        assertFalse("Failed isClientRegistered. Expected false.", ChannelManager.getInstance().isClientRegistered(ApplicationId.VISUAL));
+        assertFalse("Failed isClientRegistered. Expected false.", ChannelManager.getInstance().isClientRegistered(MyApplicationId.VISUAL));
         
     }
 }

@@ -14,18 +14,18 @@ import Messages.ATPMsg;
  */
 public abstract class Client
 {
-    private final ApplicationId appId;
+    private final MyApplicationId appId;
     
     public abstract boolean handleRequest(ATPMsg msg);
     public abstract boolean registerClient();
     public abstract boolean unregisterClient();
     
-    protected Client(ApplicationId appId)
+    protected Client(MyApplicationId appId)
     {
         this.appId = appId;
     }
     
-    public ApplicationId getAppId()
+    public MyApplicationId getAppId()
     {
         return appId;
     }

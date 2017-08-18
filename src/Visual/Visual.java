@@ -2,7 +2,7 @@ package Visual;
 
 import Messages.ATPMsg;
 import Messages.PersonDetectedRequest;
-import System.ApplicationId;
+import System.MyApplicationId;
 import System.ChannelManager;
 import System.Client;
 import System.Monitor;
@@ -26,7 +26,7 @@ public class Visual
     
     public Visual()
     {
-        super(ApplicationId.VISUAL);
+        super(MyApplicationId.VISUAL);
     }
     
     
@@ -88,15 +88,15 @@ public class Visual
             return false;
         }
         
-        if (!manager.isClientRegistered(ApplicationId.MEMORY))
+        if (!manager.isClientRegistered(MyApplicationId.MEMORY))
         {
             VA_DEBUG.WARNING("[VISUAL] MEMORY is not registered.", true);
             return false;
         }
         
         PersonDetectedRequest reply = new PersonDetectedRequest();
-        reply.setSource(ApplicationId.VISUAL);
-        reply.setTarget(ApplicationId.MEMORY);
+        reply.setSource(MyApplicationId.VISUAL);
+        reply.setTarget(MyApplicationId.MEMORY);
         reply.setTransactionId(msg.getTransactionId());
         
         manager.send(reply);
@@ -114,7 +114,7 @@ public class Visual
             return false;
         }
         
-        if (!manager.isClientRegistered(ApplicationId.MEMORY))
+        if (!manager.isClientRegistered(MyApplicationId.MEMORY))
         {
             VA_DEBUG.WARNING("[VISUAL] MEMORY is not registered.", true);
             return false;

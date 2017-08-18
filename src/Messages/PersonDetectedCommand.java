@@ -14,7 +14,7 @@ public class PersonDetectedCommand
 {
     
     public PersonDetectedCommand() {
-        super(MessageType.personDetectedCommand);
+        super(MyMessageType.personDetectedCommand);
     }
     
 }

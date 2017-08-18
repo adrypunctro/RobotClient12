@@ -10,6 +10,6 @@ package System;
  *
  * @author ASimionescu
  */
-public enum ApplicationId {
+public enum MyApplicationId implements ApplicationId {
     VISUAL, MEMORY, TOUCH
 }

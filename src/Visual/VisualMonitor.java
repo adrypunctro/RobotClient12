@@ -6,7 +6,7 @@
 package Visual;
 
 import Messages.PersonDetectedCommand;
-import System.ApplicationId;
+import System.MyApplicationId;
 import System.ChannelManager;
 import System.Monitor;
 import System.VA_DEBUG;
@@ -50,11 +50,11 @@ public class VisualMonitor
         ChannelManager manager = ChannelManager.getInstance();
         if (manager != null)
         {
-            if (manager.isClientRegistered(ApplicationId.VISUAL))
+            if (manager.isClientRegistered(MyApplicationId.VISUAL))
             {
                 PersonDetectedCommand msg = new PersonDetectedCommand();
-                msg.setSource(ApplicationId.VISUAL);
-                msg.setTarget(ApplicationId.VISUAL);
+                msg.setSource(MyApplicationId.VISUAL);
+                msg.setTarget(MyApplicationId.VISUAL);
                 msg.createTransactionId();
 
                 int transId = manager.send(msg);

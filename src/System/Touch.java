@@ -17,7 +17,7 @@ public class Touch
 
     public Touch()
     {
-        super(ApplicationId.TOUCH);
+        super(MyApplicationId.TOUCH);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Touch
             return false;
         }
         
-        if (!manager.isClientRegistered(ApplicationId.MEMORY))
+        if (!manager.isClientRegistered(MyApplicationId.MEMORY))
         {
             VA_DEBUG.WARNING("[TOUCH] MEMORY is not registered.", true);
             return false;

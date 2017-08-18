@@ -14,7 +14,7 @@ public class TouchDetectedCommand
 {
     
     public TouchDetectedCommand() {
-        super(MessageType.touchDetectedCommand);
+        super(MyMessageType.touchDetectedCommand);
     }
     
 }

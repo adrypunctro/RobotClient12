@@ -46,11 +46,11 @@ public class TouchMonitor
         ChannelManager manager = ChannelManager.getInstance();
         if (manager != null)
         {
-            if (manager.isClientRegistered(ApplicationId.TOUCH))
+            if (manager.isClientRegistered(MyApplicationId.TOUCH))
             {
                 TouchDetectedCommand msg = new TouchDetectedCommand();
-                msg.setSource(ApplicationId.TOUCH);
-                msg.setTarget(ApplicationId.TOUCH);
+                msg.setSource(MyApplicationId.TOUCH);
+                msg.setTarget(MyApplicationId.TOUCH);
                 msg.createTransactionId();
 
                 int transId = manager.send(msg);

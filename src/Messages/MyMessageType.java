@@ -10,7 +10,7 @@ package Messages;
  *
  * @author ASimionescu
  */
-public enum MessageType
+public enum MyMessageType implements MessageType
 {
     onoffWakeUpRequest,
     onoffWakeUpResponse,

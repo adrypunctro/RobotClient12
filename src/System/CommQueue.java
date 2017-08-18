@@ -50,7 +50,7 @@ public class CommQueue
         else {
             VA_DEBUG.INFO("[CommQueue] Failed add object:", false, 3);
         }
-        VA_DEBUG.INFO(" from "+item.getMsg().getSourceId().name()+" to "+item.getMsg().getTargetId().name()+" ("+item.getMsg().getMsgType().name()+", "+priority+", "+timeout+")", false, 3);
+        VA_DEBUG.INFO(" from "+item.getMsg().getSourceId()+" to "+item.getMsg().getTargetId()+" ("+item.getMsg().getMsgType().name()+", "+priority+", "+timeout+")", false, 3);
         VA_DEBUG.INFO(" SIZE: "+queue.size(), true, 3);
         
         return ret;
